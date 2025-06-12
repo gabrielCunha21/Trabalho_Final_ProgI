@@ -14,7 +14,7 @@ void menuInicial(){
     printf("| 3 -> Gerenciar Saida (Liberacao); |\n");
     printf("| 4 -> Consulta/Listagem;           |\n");      
     printf("| 5 -> Relatorios;                  |\n");
-    printf("| 6 -> Sair.                         |");
+    printf("| 6 -> Sair.                        |");
     printf("\n-------------------------------------\n");
 
     printf("Digite a opcao: ");
