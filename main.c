@@ -13,6 +13,7 @@ struct Preso
 
 };
 
+void lerPresoPorCela();
 void gravarArquivo(struct Preso preso1);
 void lerArquivo();
 
@@ -66,7 +67,7 @@ void menuInicial() {
                             scanf("%s", preso.idade);
                             printf("Digite a cela do preso: ");
                             scanf("%s", preso.cela);
-                            printf("Digite a data: (DD/MM/AAAA): ");
+                            printf("Digite a data de entrada: (DD/MM/AAAA): ");
                             scanf("%s", preso.dataEntrada);
                             gravarArquivo(preso);
                             break;
@@ -95,7 +96,32 @@ void menuInicial() {
                 break;
 
             case 5:
-                // Código para relatórios
+            do{
+                 printf("\n-------------------------------------\n");
+                    printf("| 1 -> Listar presos por cela      |\n");
+                    printf("| 2 -> Relatorio de saidas         |\n");
+                    printf("| 3 -> Relatorio de ficha criminal |\n");
+                    printf("| 4 -> Estatísticas do presídio    |\n");
+                    printf("| 5 -> Voltar                      |\n");
+                    printf("------------------------------------\n");
+                    printf("Digite a opcao: ");
+                    scanf("%d", &opcao1);
+                    getchar();
+                    switch (opcao1) {
+                        case 1:
+                            lerPresoPorCela();
+                            break;
+                        case 2:
+                            printf("Voltando...\n");
+                            break;
+                        case 3:
+                            printf("Voltando...\n");
+                            break;
+                        default:
+                            printf("Opcao invalida! Tente novamente.\n");
+                            break;
+                    }
+                } while (opcao1 != 5); 
                 break;
 
             case 6:
@@ -156,7 +182,7 @@ void lerArquivo() {
         linha[strcspn(linha, "\n")] = 0;
 
         registro = strtok(linha, ";");
-
+        
         while (registro != NULL) {
             printf("Linha %d: %s\n", numeroRegistro, registro);
             numeroRegistro++;
@@ -170,3 +196,36 @@ void lerArquivo() {
     fclose(arquivo);
 }
 
+
+
+/*************************************************************************************/
+
+void lerPresoPorCela() {
+     FILE *arquivo;
+     arquivo = fopen("../dados.txt", "r");
+     char linha[1000];
+    char *registro;
+    int numeroRegistro = 1;
+    arquivo = fopen("../dados.txt", "r");
+
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo para leitura! Verifique se o arquivo existe.\n");
+        return;
+    }
+
+if (fgets(linha, sizeof(linha), arquivo) != NULL) {
+        linha[strcspn(linha, "\n")] = 0;
+
+        registro = strtok(linha, ";");
+        
+        while (registro != NULL) {
+            if(registro=='3'){
+               printf("Linha %d: %s\n", numeroRegistro, registro);
+                numeroRegistro++;
+                registro = strtok(NULL, ";"); 
+            }
+            
+        }
+    }
+
+}
