@@ -2,6 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
+struct fichaCriminal
+{
+    char codigoPenal[4];
+    char dataCrime[11];
+    char descricao[200];
+};
+
 struct Preso
 {
     char nome[20];
@@ -9,8 +16,10 @@ struct Preso
     char idade[3];
     char cela[4];
     char dataEntrada[11];
+    struct fichaCriminal FichaCriminal;
 
 };
+
 
 void gravarArquivo(struct Preso preso1);
 void lerArquivo();
