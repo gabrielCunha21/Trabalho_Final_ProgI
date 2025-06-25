@@ -44,8 +44,16 @@ void menuInicial() {
     //     fclose(arquivo);
     // }
 
-    int opcao = 0, opcao1 = 0, opcao2 = 0;
+    int opcao = 0, opcao1 = 0; // Removido opcao2
     char resposta;
+    int escolha;
+    char novaCela[4];
+    int opcao4 = 0;
+    int linha;
+    int opcao5 = 0;
+    char nome[40];
+    int num = 0;
+    int opcao6 = 0;
 
     do
         {
@@ -105,6 +113,12 @@ void menuInicial() {
 
                                 preso.FichaCriminal = Fcriminal;
                             }
+                            else{
+                                strcpy(Fcriminal.codigoPenal, " ");
+                                strcpy(Fcriminal.dataCrime, " ");
+                                strcpy(Fcriminal.descricao, " ");
+                                preso.FichaCriminal = Fcriminal;
+                            }
                             gravarArquivo(preso);
                             break;
                         case 2:
@@ -122,12 +136,7 @@ void menuInicial() {
                 break;
 
             case 2:
-
-                int escolha;
-                char novaCela[4];
-
                 lerArquivo();
-
                 printf("Digite o numero da linha: ");
                 scanf("%d", &escolha);
 
@@ -142,10 +151,7 @@ void menuInicial() {
                 break;
 
             case 3:
-
-                int opcao4=0;
-
-                 do {
+                do {
                     printf("\n-------------------------------\n");
                     printf("| 1 -> Liberar Preso            |\n");
                     printf("| 2 -> Mostrar Presos Liberados |\n");
@@ -157,9 +163,7 @@ void menuInicial() {
 
                     switch (opcao4) {
                         case 1:
-                            int linha;
-
-                            lerArquivo(); 
+                            lerArquivo();
                             printf("Digite o numero da linha do preso a ser liberado: ");
                             scanf("%d", &linha);
                             liberarPresoPorLinha(linha);
@@ -179,10 +183,7 @@ void menuInicial() {
                 break;
 
             case 4:
-
-                 int opcao5=0;
-
-                 do {
+                do {
                     printf("\n-------------------------------\n");
                     printf("| 1 -> Consultar presos         |\n");
                     printf("| 2 -> Enviar Relatorio         |\n");
@@ -194,25 +195,18 @@ void menuInicial() {
 
                     switch (opcao5) {
                         case 1:
-                            char nome[40];
                             printf("Digite o nome a ser buscado: ");
-                            getchar(); 
+                            getchar();
                             fgets(nome, sizeof(nome), stdin);
-                            nome[strcspn(nome, "\n")] = '\0'; 
-
+                            nome[strcspn(nome, "\n")] = '\0';
                             buscarPresoPorNome(nome);
+                            break;
                         case 2:
-
-                            int num=0;
-
                             lerArquivo();
-
                             printf("Digite a linha do preso que deseja enviar o relatorio: ");
                             scanf("%d", &num);
-
                             struct Preso p = obterPresoPorLinha(num);
                             imprimirRelatorioPreso(p);
-
                             break;
                         case 3:
                             printf("Voltando...\n");
@@ -226,9 +220,6 @@ void menuInicial() {
                 break;
 
             case 5:
-
-                int opcao6=0;
-
                 do {
                     printf("\n--------------------------------------\n");
                     printf("| 1 -> Adicionar crime                |\n");
