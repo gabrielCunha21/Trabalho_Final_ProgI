@@ -1,0 +1,6 @@
+222.333.444.55 - 5 - 01/01/2020 - Furto qualificado;
+444.555.666.77 - 4 - 10/02/2019 - Corrupcao ativa;
+666.777.888.99 - 3 - 20/10/2020 - Falsificacao de documentos;
+123.456.789.00 - 7 - 11/11/2016 - Furto de veiculo;
+321.654.987.00 - 6 - 15/09/2023 - Formacao de quadrilha;
+000.111.222.33 - 1 - 17/08/2020 - Estelionato;
