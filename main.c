@@ -48,6 +48,9 @@ void menuInicial() {
     char resposta;
     int escolha;
     char novaCela[4];
+    char novaDataCrime[11];
+    char novoCodigoPenal[4];
+    char novaDescricao[200];
     int opcao4 = 0;
     int linha;
     int opcao5 = 0;
@@ -221,24 +224,87 @@ void menuInicial() {
 
             case 5:
                 do {
-                    printf("\n--------------------------------------\n");
-                    printf("| 1 -> Adicionar crime                |\n");
+                    printf("\n---------------------------------------\n");
+                    printf("| 1 -> Atulizar crime                 |\n");
                     printf("| 2 -> Remover crime                  |\n");
                     printf("| 3 -> Consultar ficha criminal       |\n");
-                    printf("| 4 -> Voltar                         |\n");    
-                    printf("----------------------------------------\n");
+                    printf("| 4 -> Voltar                         |\n");
+                    printf("---------------------------------------\n");
                     printf("Digite a opcao: ");
                     scanf("%d", &opcao6);
                     getchar(); 
-
                     switch (opcao6) {
                         case 1:
 
+                            lerArquivo();
+                            printf("Digite o numero da linha: ");
+                            scanf("%d", &escolha);
+
+                            struct Preso presoSelecionadoAtualizar = obterPresoPorLinha(escolha);
+
+                            printf("Deseja atualizar o codigo penal? (s/n) ");
+                            scanf(" %c", &resposta);
+
+                            if (resposta == 's'  || resposta == 'S') {
+                                printf("Digite o codigo penal do crime: ");
+                                scanf("%s", novoCodigoPenal);
+                                strcpy(presoSelecionadoAtualizar.FichaCriminal.codigoPenal, novoCodigoPenal);
+                            }
+                            
+                            printf("Deseja atualizar a data do crime? (s/n) ");
+                            scanf(" %c", &resposta);
+                            
+                            if (resposta == 's'  || resposta == 'S') {
+                                printf("Digite a data do crime: ");
+                                scanf("%s", novaDataCrime);
+                                strcpy(presoSelecionadoAtualizar.FichaCriminal.dataCrime, novaDataCrime);
+                            }
+
+                            printf("Deseja atualizar a descricao do crime? (s/n) ");
+                            scanf(" %c", &resposta);
+                            
+                            if (resposta == 's'  || resposta == 'S') {
+                                printf("Digite a descricao do crime: ");
+                                getchar();
+                                fgets(novaDescricao, sizeof(novaDescricao), stdin);
+                                novaDescricao[strcspn(novaDescricao, "\n")] = '\0'; // Remove o \n do final
+                                strcpy(presoSelecionadoAtualizar.FichaCriminal.descricao, novaDescricao);
+                            }
+
+                            editarPresoPorLinha(escolha, presoSelecionadoAtualizar);
                             break;
                             
                         case 2:
 
+                            lerArquivo();
+                            printf("Digite o numero da linha: ");
+                            scanf("%d", &escolha);
+
+                            struct Preso presoSelecionadoRemover = obterPresoPorLinha(escolha);  
+
+
+                            printf("Deseja remover o codigo penal? (s/n) ");
+                            scanf(" %c", &resposta);
+                            if (resposta == 's'  || resposta == 'S') {
+                                presoSelecionadoRemover.FichaCriminal.codigoPenal[0] = '\0';//Limpa o campo da variável
+                            }
+
+                            printf("Deseja remover a data do crime? (s/n) ");
+                            scanf(" %c", &resposta);
+                            if (resposta == 's'  || resposta == 'S') {
+                                presoSelecionadoRemover.FichaCriminal.dataCrime[0] = '\0';
+                            }
+
+                            printf("Deseja remover a descricao do crime? (s/n) ");
+                            scanf(" %c", &resposta);
+                            if (resposta == 's'  || resposta == 'S') {
+                                presoSelecionadoRemover.FichaCriminal.descricao[0] = '\0';
+                            }
+
+                            
+                            editarPresoPorLinha(escolha, presoSelecionadoRemover); 
                             break;
+                        
                             
                         case 3:
                         
@@ -562,4 +628,3 @@ void imprimirRelatorioPreso(struct Preso preso) {
         printf("Ainda não ha ficha criminal registrada.\n");
     }
 }
-
