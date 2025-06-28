@@ -66,7 +66,7 @@ void menuInicial() {
         scanf("%d", &opcao);
 
         switch (opcao) {
-            case 1:
+            case 1:{
                 do {
                     printf("\n---------------------------\n");
                     printf("| 1 -> Registrar Preso    |\n");
@@ -75,10 +75,10 @@ void menuInicial() {
                     printf("---------------------------\n");
                     printf("Digite a opcao: ");
                     scanf("%d", &opcao1);
-                    getchar(); // Limpa o buffer do teclado
+                    getchar();
 
                     switch (opcao1) {
-                        case 1:
+                        case 1: {
                             printf("Digite o cpf do preso: ");
                             scanf("%s", preso.cpf);
                             printf("Digite o nome do preso: ");
@@ -111,21 +111,26 @@ void menuInicial() {
                             }
                             gravarArquivo(preso);
                             break;
-                        case 2:
+                        }
+                        case 2:{
                             lerArquivo();
                             break;
-                        case 3:
+                        }
+                        case 3:{
                             printf("Voltando...\n");
                             break;
-                        default:
+                        }
+                        default:{
+
                             printf("Opcao invalida! Tente novamente.\n");
                             break;
+                        }
                     }
                 } while (opcao1 != 3);
 
                 break;
-
-            case 2:
+            }
+            case 2:{
 
                 int escolha;
                 char novaCela[4];
@@ -144,8 +149,8 @@ void menuInicial() {
                 editarPresoPorLinha(escolha, presoSelecionado);
 
                 break;
-
-            case 3:
+            }
+            case 3:{
 
                 int opcao4=0;
 
@@ -160,7 +165,7 @@ void menuInicial() {
                     getchar(); 
 
                     switch (opcao4) {
-                        case 1:
+                        case 1:{
                             int linha;
 
                             lerArquivo(); 
@@ -168,21 +173,26 @@ void menuInicial() {
                             scanf("%d", &linha);
                             liberarPresoPorLinha(linha);
                             break;
-                        case 2:
+                        }
+                        case 2:{
                             lerArquivoLiberados();
                             break;
-                        case 3:
+                        }
+                        case 3:{
+
                             printf("Voltando...\n");
                             break;
-                        default:
+                        }
+                        default:{
                             printf("Opcao invalida! Tente novamente.\n");
                             break;
+                        }
                     }
                 } while (opcao4 != 3);
 
                 break;
-
-            case 4:
+            }
+            case 4:{
 
                  int opcao5=0;
 
@@ -197,7 +207,7 @@ void menuInicial() {
                     getchar(); 
 
                     switch (opcao5) {
-                        case 1:
+                        case 1:{
                             char nome[40];
                             printf("Digite o nome a ser buscado: ");
                             getchar(); 
@@ -207,7 +217,8 @@ void menuInicial() {
                             buscarPresoPorNome(nome);
 
                             break;
-                        case 2:
+                        }
+                        case 2:{
 
                             int num=0;
 
@@ -220,18 +231,21 @@ void menuInicial() {
                             imprimirRelatorioPreso(p);
 
                             break;
-                        case 3:
+                        }
+                        case 3:{
                             printf("Voltando...\n");
                             break;
-                        default:
+                        }
+                        default:{
                             printf("Opcao invalida! Tente novamente.\n");
                             break;
+                        }
                     }
                 } while (opcao5 != 3);
 
                 break;
-
-            case 5:
+            }
+            case 5:{
 
                 int opcao6=0;
 
@@ -247,7 +261,7 @@ void menuInicial() {
                     getchar(); 
 
                     switch (opcao6) {
-                        case 1:
+                        case 1:{
 
                             int escolha;
                             struct fichaCriminal FCriminalAtualizar;
@@ -274,12 +288,12 @@ void menuInicial() {
                                 gravarArquivoCriminal(FCriminalAtualizar);
 
                             break;
-                            
-                        case 2:
+                        }
+                        case 2:{
                             listarFichas();
                             break;
-                            
-                        case 3:
+                        }
+                        case 3:{
 
                             int escolha1;
 
@@ -291,25 +305,29 @@ void menuInicial() {
                             removerFichaCriminal(escolha1);
                             
                             break;
-
-                        case 4:
+                        }
+                        case 4:{
                             printf("Voltando...\n");
                             break;
-                        default:
+                        }
+                        default:{
                             printf("Opcao invalida! Tente novamente.\n");
                             break;
+                        }
                     }
                 } while (opcao6 != 4);
 
                 break;
+            }
 
-            case 6:
+            case 6:{
                 printf("Saindo...\n");
                 break;
-
-            default:
+            }
+            default:{
                 printf("Opcao invalida! Tente novamente.\n");
                 break;
+            }
         }
     } while (opcao != 6);
 
